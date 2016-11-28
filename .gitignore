@@ -5,3 +5,12 @@
 /captures
 *.pyc
 .idea
+*.iml
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
