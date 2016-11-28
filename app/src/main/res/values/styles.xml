@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <item name="nephritis" type="color">#27ae60</item>
+    <item name="greyBackground" type="color">#b3cccccc</item>
+
+</resources>

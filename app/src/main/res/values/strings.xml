@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Trognon</string>
+
+    <string name="title_section1">Scanner</string>
+    <string name="title_section2">List</string>
+    <string name="title_section3">About</string>
+
+    <string name="title_section4">Details</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+</resources>
