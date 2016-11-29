@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private String barcodeValueBuffer = "";
     private JSONObject foodApiResult = new JSONObject();
 
+    private long TWO_SECS_DELAY = 2000;
+    private String emptyListMessage = "Nothing scanned for now...";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +59,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         sharedData = new SharedData(this);
 
         cameraView = (SurfaceView) findViewById(R.id.cameraView);
-        barcodeInfo = (TextView) findViewById(R.id.infoTextView);
+        barcodeInfo = (TextView) findViewById(R.id.barcodeInfo);
 
         ListView mListView = (ListView) findViewById(R.id.recipeListView);
+
+        if (listItems.size() == 0) { listItems.add(emptyListMessage); }
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
 
@@ -69,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 //.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
                 .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(1024, 768)
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -127,15 +131,20 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                                 barcodeValueBuffer = "";
                             }
                         },
-                        2000
+                        TWO_SECS_DELAY
                 );
 
-                barcodeInfo.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        barcodeInfo.setText("Found: " + barcodeValue);
-                    }
-                });
+                //Set barcode info on the camera when detected
+                setBarcodeInfo("Found: " + barcodeValue);
+                new Timer().schedule(
+                        new TimerTask() {
+                            @Override
+                            public void run() {
+                                setBarcodeInfo("");
+                            }
+                        },
+                        TWO_SECS_DELAY
+                );
 
                 try {
                     foodApiResult = FoodApi.getProductFromCode(barcodeValue);
@@ -147,16 +156,26 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     @Override
                     public void run() {
                         String productName = FoodApi.getProductName(foodApiResult);
+                        if (listItems.get(0) == emptyListMessage) { listItems.clear(); }
                         if (productName != "") {
-                            listItems.add(productName);
+                            listItems.add(0, productName);
                         } else {
-                            listItems.add(barcodeValue);
+                            listItems.add(0, barcodeValue);
                         }
                         sharedData.addProductToList(foodApiResult, productName, barcodeValue);
 
                         adapter.notifyDataSetChanged();
                     }
                 });
+            }
+        });
+    }
+
+    private void setBarcodeInfo(final String val) {
+        barcodeInfo.post(new Runnable() {
+            @Override
+            public void run() {
+                barcodeInfo.setText(val);
             }
         });
     }

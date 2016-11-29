@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -17,7 +17,17 @@
         android:id="@+id/actionBarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/actionBarIcon"
+        android:layout_marginTop="4dp"
         android:textColor="#fff"
         android:textSize="23sp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/actionBarHelp"
+        android:background="@android:drawable/ic_menu_help"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="3dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+</RelativeLayout>
