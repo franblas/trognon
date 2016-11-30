@@ -17,6 +17,7 @@
         android:icon="@mipmap/dntf_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <receiver android:name=".NotificationsCenter"></receiver>
         <activity
             android:name=".OnBoardingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"

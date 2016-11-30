@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         sharedData = new SharedData(this);
 
+        // Setup notification
+        NotificationsCenter.setupAlarm(MainActivity.this);
+
         cameraView = (SurfaceView) findViewById(R.id.cameraView);
         barcodeInfo = (TextView) findViewById(R.id.barcodeInfo);
 
