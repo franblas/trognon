@@ -44,22 +44,22 @@ public class NotificationsCenter extends BroadcastReceiver {
     private void sendNotification(Context context, int nbProducts) {
         Intent intent = new Intent(context, FoodListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder b = new NotificationCompat.Builder(context);
 
         b.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setColor(Color.rgb(39, 174, 96)) // nephritis color
-                .setLights(Color.GREEN, 3000, 3000)
-                .setSmallIcon(R.drawable.fork_and_spoon)
-                .setTicker(notificationTitle)
-                .setContentTitle(notificationTitle)
-                .setContentText("You have " + nbProducts + " products that will expire soon.")
-                .setDefaults(Notification.DEFAULT_SOUND)
-                .setContentIntent(contentIntent)
-                .setContentInfo("Info");
+         .setDefaults(Notification.DEFAULT_ALL)
+         .setWhen(System.currentTimeMillis())
+         .setColor(Color.rgb(39, 174, 96)) // nephritis color
+         .setLights(Color.GREEN, 3000, 3000)
+         .setSmallIcon(R.drawable.fork_and_spoon)
+         .setTicker(notificationTitle)
+         .setContentTitle(notificationTitle)
+         .setContentText("You have " + nbProducts + " products that will expire soon.")
+         .setDefaults(Notification.DEFAULT_SOUND)
+         .setContentIntent(contentIntent)
+         .setContentInfo(notificationTitle);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, b.build());
