@@ -30,6 +30,8 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //android:theme="@style/Theme.AppCompat.NoActionBar"
+        setTheme(R.style.Theme_AppCompat_NoActionBar);
         sharedData = new SharedData(this);
         if (sharedData.onBoardingStatus()) {
             startMainActivity();
