@@ -97,19 +97,18 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             }
 
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 cameraSource.stop();
             }
+
         });
 
         detector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
-            public void release() {
-            }
+            public void release() {}
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
