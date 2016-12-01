@@ -224,4 +224,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true); // leave the app
+    }
 }
