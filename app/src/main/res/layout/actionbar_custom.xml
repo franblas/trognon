@@ -22,12 +22,12 @@
         android:textColor="#fff"
         android:textSize="23sp" />
 
-    <Button
+    <!--Button
         android:id="@+id/actionBarHelp"
         android:background="@android:drawable/ic_menu_help"
         android:layout_alignParentRight="true"
         android:layout_marginTop="3dp"
         android:layout_width="30dp"
-        android:layout_height="30dp" />
+        android:layout_height="30dp" /-->
 
 </RelativeLayout>
