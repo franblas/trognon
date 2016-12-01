@@ -3,7 +3,7 @@
     <item android:drawable="@color/nephritis"/>
     <item>
         <bitmap
-            android:src="@drawable/dntf_logo"
+            android:src="@drawable/dntf_logo_big"
             android:gravity="center"/>
     </item>
 </layer-list>
