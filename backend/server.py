@@ -16,9 +16,10 @@ def connect():
 def ping():
     return 'pong'
 
-@app.route('/api/v1/product/<code>', methods=['GET'])
+@app.route('/api/v0/product/<code>', methods=['GET'])
 @crossdomain(origin='*')
 def get_product_from_code(code):
+    code = code.replace('.json', '')
     data = select_product_with_code(g.conn, code)
     if not data: return api_error('Product with code {} not found...'.format(code))
     return api_data(data)

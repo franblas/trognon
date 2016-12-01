@@ -58,5 +58,5 @@ def api_error(message):
 def api_data(data):
     return flask.jsonify({
         'status': 'ok',
-        'data': data
+        'product': data
     }), 200
