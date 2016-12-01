@@ -1,4 +1,4 @@
-package com.example.dntf.dntf;
+package com.dntf.dntf.dntf;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;

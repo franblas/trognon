@@ -1,4 +1,4 @@
-package com.example.dntf.dntf;
+package com.dntf.dntf.dntf;
 
 import android.app.Activity;
 import android.content.Intent;

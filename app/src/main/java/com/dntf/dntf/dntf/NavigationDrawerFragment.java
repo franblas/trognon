@@ -1,4 +1,4 @@
-package com.example.dntf.dntf;
+package com.dntf.dntf.dntf;
 
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.example.dntf.dntf"
+        applicationId "com.dntf.dntf.dntf"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1

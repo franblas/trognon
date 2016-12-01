@@ -1,53 +1,53 @@
-package com.example.dntf.dntf;
+package com.dntf.dntf.dntf;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * Created by franblas on 28/11/16.
+ * Created by franblas on 22/10/16.
  */
-public class AboutActivity extends AppCompatActivity
+public class FoodListActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private TextView aboutTxt;
+    private ListView mListView;
+    private SharedData sharedData;
+    private List<String> emptyListMessage = Arrays.asList("Nothing registered on the list for now...");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_food_list);
 
         this.setupCustomActionBar();
 
-        PackageInfo pInfo = null;
-        String version = "";
-        try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = pInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+        sharedData = new SharedData(this);
+        ArrayList<JSONObject> products = sharedData.getProductsList();
+
+        mListView = (ListView) findViewById(R.id.recipeListView2);
+
+        if (products.size() > 0) {
+            FoodList adapter = new FoodList(this, products);
+            mListView.setAdapter(adapter);
+        } else {
+            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, emptyListMessage);
+            mListView.setAdapter(adapter);
         }
 
-        String aboutText = "About Trognon ...<br/><br/>" +
-                "Trognon is a small app to help you to remind the food you bought before it reaches the expiration date. " +
-                "Just scan barcodes of important food and Trognon will add it to your list and send notifications before food expired.<br/><br/>" +
-                "Trogon is <a href='https://en.wikipedia.org/wiki/Privacy_by_design'>private by design</a>, your list remains on your phone and is never used by any servers or analysers.<br/><br/>" +
-                "The app is using <a href='http://world.openfoodfacts.org/'>open food facts</a> database to get informations on products.<br/><br/>" +
-                "Version " + version;
-        aboutTxt = (TextView) findViewById(R.id.aboutTxt);
-        aboutTxt.setClickable(true);
-        aboutTxt.setMovementMethod(LinkMovementMethod.getInstance());
-        aboutTxt.setText(Html.fromHtml(aboutText));
     }
 
     private void setupCustomActionBar() {
@@ -67,7 +67,7 @@ public class AboutActivity extends AppCompatActivity
         });
 
         TextView actionBarTitle = (TextView) customView.findViewById(R.id.actionBarTitle);
-        actionBarTitle.setText(R.string.title_section3);
+        actionBarTitle.setText(R.string.title_section2);
 
         getSupportActionBar().setCustomView(customView);
     }
@@ -76,20 +76,21 @@ public class AboutActivity extends AppCompatActivity
     public void onNavigationDrawerItemSelected(int position) {
         switch (position) {
             case 0:
-                Intent intent = new Intent(AboutActivity.this, MainActivity.class);
+                Intent intent = new Intent(FoodListActivity.this, MainActivity.class);
                 NavigationDrawerFragment.mCurrentSelectedPosition = 0;
                 startActivity(intent);
                 break;
             case 1:
-                intent = new Intent(AboutActivity.this, FoodListActivity.class);
-                NavigationDrawerFragment.mCurrentSelectedPosition = 1;
-                startActivity(intent);
                 break;
             case 2:
+                intent = new Intent(FoodListActivity.this, AboutActivity.class);
+                NavigationDrawerFragment.mCurrentSelectedPosition = 2;
+                startActivity(intent);
                 break;
             default:
                 break;
         }
 
     }
+
 }
