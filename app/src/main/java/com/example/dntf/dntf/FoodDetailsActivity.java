@@ -48,7 +48,7 @@ public class FoodDetailsActivity extends AppCompatActivity
 
         ImageView imageView = (ImageView) this.findViewById(R.id.foodDetailIcon);
         imageView.setColorFilter(expiredFoodStatus);
-        imageView.setImageResource(R.drawable.fork_and_spoon);
+        imageView.setImageResource(R.drawable.dntf_logo_dark);
 
         TextView foodDetailProductName = (TextView) this.findViewById(R.id.foodDetailProductName);
         foodDetailProductName.setText(productName);

@@ -46,7 +46,7 @@ public class FoodList extends ArrayAdapter<JSONObject> {
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.foodIcon);
         imageView.setColorFilter(expiredFoodStatus);
-        imageView.setImageResource(R.drawable.fork_and_spoon);
+        imageView.setImageResource(R.drawable.dntf_logo_dark);
 
         TextView productNameTxt = (TextView) rowView.findViewById(R.id.productName);
         productNameTxt.setText(FoodApi.getProductName(products.get(position)));
