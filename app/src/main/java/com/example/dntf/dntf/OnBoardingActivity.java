@@ -30,7 +30,6 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //android:theme="@style/Theme.AppCompat.NoActionBar"
         setTheme(R.style.Theme_AppCompat_NoActionBar);
         sharedData = new SharedData(this);
         if (sharedData.onBoardingStatus()) {
@@ -47,7 +46,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
         onBoardingTxt.setClickable(true);
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());
-        onBoardingTxt.setText(Html.fromHtml(onBoardingText));
+        onBoardingTxt.setText(Html.fromHtml(onBoardingText), TextView.BufferType.SPANNABLE);
 
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestUserPermission.checkPermissions();

@@ -53,7 +53,7 @@ public class NotificationsCenter extends BroadcastReceiver {
          .setWhen(System.currentTimeMillis())
          .setColor(Color.rgb(39, 174, 96)) // nephritis color
          .setLights(Color.GREEN, 3000, 3000)
-         .setSmallIcon(R.drawable.fork_and_spoon)
+         .setSmallIcon(R.drawable.dntf_logo_dark)
          .setTicker(notificationTitle)
          .setContentTitle(notificationTitle)
          .setContentText("You have " + nbProducts + " products that will expire soon.")

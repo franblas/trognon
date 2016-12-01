@@ -8,6 +8,6 @@
     <item name="greyBackground" type="color">#b3cccccc</item>
 
     <style name="splashScreenTheme" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/nephritis</item>
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 </resources>
