@@ -16,7 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by franblas on 28/11/16.
@@ -62,10 +64,25 @@ public class FoodDetailsActivity extends AppCompatActivity
         String res = "";
         if (product != null) {
             try {
-                List<String> keys = Arrays.asList("brands", "countries", "quantity", "nutrition_score_debug", "nutriments", "ingredients_text_debug");
-                for (String key : keys) {
-                    String formatedKey = key.replace("_", " ");
-                    res += "<b>" + formatedKey + "</b>: " + product.get(key).toString() + "<br/><br/>";
+                List<String> keys = Arrays.asList("brands", "quantity", "countries", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
+                List<String> formattedKeys = Arrays.asList("Brand", "Quantity", "Country", "Ingredients", "Nutriments", "Nutrition score");
+                for (int i=0; i<keys.size(); i++) {
+                    String key = keys.get(i);
+                    String formattedKey = formattedKeys.get(i);
+                    String addToRes = "<b>" + formattedKey + "</b>: &nbsp;";
+                    switch (formattedKey) {
+                        case "Ingredients":
+                            addToRes += ingredientsFormatter(product.get(key).toString());
+                            break;
+                        case "Nutriments":
+                            addToRes += "<br/>" + nutrimentsFormatter(product.get(key).toString());
+                            break;
+                        default:
+                            addToRes += product.get(key).toString();
+                            break;
+
+                    }
+                    res += addToRes + "<br/><br/>";
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -73,6 +90,40 @@ public class FoodDetailsActivity extends AppCompatActivity
 
         } else {
             res += noDetailsFound;
+        }
+        return res;
+    }
+
+    private String ingredientsFormatter(String ingredients) {
+        return ingredients.trim().replace("_", "").replace(":", "");
+    }
+
+    private String nutrimentsFormatter(String nutriments) {
+        String firstStep = nutriments.replace("{nameValuePairs={", "").replace("}}", "");
+        String[] keyValuePairs = firstStep.split(",");
+        Map<String, String> units = new HashMap<>();
+        for (String k : keyValuePairs) {
+            if (k.contains("_unit")) {
+                String[] kv = k.split("=");
+                units.put(kv[0].trim().replace("_unit", ""), kv[1]);
+            }
+        }
+
+        String res = "";
+        for (String k : keyValuePairs) {
+            if (!k.contains("_unit")) {
+                String[] kv = k.split("=");
+                if (kv.length < 2) {
+                    continue;
+                }
+                String key = kv[0].trim();
+                String value = kv[1];
+                String unit = units.get(key.split("_")[0]);
+                if (unit == null) {
+                    unit = "";
+                }
+                res += "&nbsp;&nbsp; &bull; &nbsp;<i>" + key.replace("_", " ") + "</i>: &nbsp;" + value + unit + "<br/>";
+            }
         }
         return res;
     }
