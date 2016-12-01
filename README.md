@@ -5,9 +5,9 @@ Trognon is a small app to help you to remind the food you bought before it reach
 Food waste is something we should all avoid in order to reduce consumption and protect the environment.
 
 Why Trognon ? Trognon is a french word meaning the core of a fruit, an apple for example. It can also
-be used as an adjective to say 'cute'.
+be used as an adjective to say "cute".
 
-Nb: The project was originally called "Do Not Throw Food" (aka DNTF).
+Nb: The project was originally called "Do Not Throw Food" (aka DNTF), but Trognon is more "trognon".
 
 ## App code
 Here is an overview of the app mechanisms.
