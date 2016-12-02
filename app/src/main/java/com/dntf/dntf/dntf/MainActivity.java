@@ -1,8 +1,6 @@
 package com.dntf.dntf.dntf;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private String barcodeValueBuffer = "";
     private JSONObject foodApiResult = new JSONObject();
 
+    private RequestUserPermission requestUserPermission = new RequestUserPermission(this);
+
     private long TWO_SECS_DELAY = 2000;
     private String emptyListMessage = "Nothing scanned for now...";
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    if (!requestUserPermission.isGranted()) {
                         return;
                     } else {
                         sharedData.onBoardingDone();
