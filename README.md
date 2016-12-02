@@ -13,28 +13,28 @@ Nb: The project was originally called "Do Not Throw Food" (aka DNTF), but Trogno
 Here is an overview of the app mechanisms.
 
 ### Activities
-- `OnBoarding`
+- `OnBoarding` + `OnBoarding2`  
 The on boarding activity is the first screen the user will see when starting the app for the
 first time. It asks for user permission then redirects to the main activity. The redirection is
 automatic when the on boarding is done. The activity does not have a sliding menu on the left neither
 an action action bar on top.
 
-- `Main`
+- `Main`  
 The main activity implements the logic for the scanner using the smartphone camera. It also
 setups the alarm manager for notifications (see below for more details). If the user permissions
 are not allowed it redirects to the on boarding (first time only). The activity has a sliding menu
 on the left and an action bar on top.
 
-- `About`
+- `About`  
 The about activity is quite the same as the on boarding one, however it has a sliding menu on the left
 and an action bar on top.
 
-- `FoodList`
+- `FoodList`  
 The food list activity implements the logic for listing scanned products through a custom list layout.
 Each element is clickable and point to the food details activity. The activity has a sliding menu
 on the left and an action bar on top.
 
-- `FoodDetails`
+- `FoodDetails`  
 The food details activity implements the logic to display informations about a scanned product. The activity
 has a sliding menu on the left and an action bar on top.
 
