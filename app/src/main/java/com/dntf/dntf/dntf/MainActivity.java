@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private SurfaceView cameraView;
     private TextView barcodeInfo;
     private CameraSource cameraSource;
+    private BarcodeDetector detector;
     private ArrayList<String> listItems = new ArrayList<>();
     private ArrayAdapter adapter;
 
@@ -70,13 +71,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
 
-        BarcodeDetector detector = new BarcodeDetector.Builder(this)
+        detector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.EAN_13 | Barcode.EAN_8)
                 .build();
         cameraSource = new CameraSource.Builder(this, detector)
-                //.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
                 .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)
-                .setFacing(CameraSource.CAMERA_FACING_BACK)
+                .setFacing(sharedData.getCameraFacingStatus())
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -171,6 +171,32 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         });
     }
 
+    private void setCameraFlashMode() {
+        Boolean flashOn = sharedData.getCameraFlashModeStatus();
+        Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarFlashCamera);
+        if (flashOn) {
+            cameraSource.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            sharedData.setCameraFlashModeStatus(false);
+            btn.setBackground(getResources().getDrawable(R.drawable.flash_close));
+        } else {
+            cameraSource.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            sharedData.setCameraFlashModeStatus(true);
+            btn.setBackground(getResources().getDrawable(R.drawable.flash_open));
+        }
+    }
+
+    private void setCameraFacing() {
+        int facingStatus = cameraSource.getCameraFacing();
+        if (facingStatus == CameraSource.CAMERA_FACING_BACK) {
+            sharedData.setCameraFacingStatus(CameraSource.CAMERA_FACING_FRONT);
+        } else {
+            sharedData.setCameraFacingStatus(CameraSource.CAMERA_FACING_BACK);
+        }
+        // reload activity
+        finish();
+        startActivity(getIntent());
+    }
+
     private void setBarcodeInfo(final String val) {
         barcodeInfo.post(new Runnable() {
             @Override
@@ -186,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.nephritis)));
 
-        View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+        View customView = getLayoutInflater().inflate(R.layout.actionbar_custom_main, null);
 
         final DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
         Button actionBarBtn = (Button) customView.findViewById(R.id.actionBarIcon);
@@ -199,6 +225,32 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         TextView actionBarTitle = (TextView) customView.findViewById(R.id.actionBarTitle);
         actionBarTitle.setText(R.string.title_section1);
+
+        Button setFlashBtn = (Button) customView.findViewById(R.id.actionBarFlashCamera);
+        setFlashBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    setCameraFlashMode();
+                } catch (Exception e) {
+                    Log.i("Flash Mode", e.getMessage());
+                }
+
+            }
+        });
+
+        Button reverseCameraBtn = (Button) customView.findViewById(R.id.actionBarReverseCamera);
+        reverseCameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    setCameraFacing();
+                } catch (Exception e) {
+                    Log.i("Camera Facing", e.getMessage());
+                }
+
+            }
+        });
 
         getSupportActionBar().setCustomView(customView);
     }
