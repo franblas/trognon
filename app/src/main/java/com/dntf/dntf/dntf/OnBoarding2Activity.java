@@ -1,18 +1,14 @@
 package com.dntf.dntf.dntf;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by franblas on 02/12/16.
@@ -36,27 +32,26 @@ public class OnBoarding2Activity extends AppCompatActivity {
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());
         onBoardingTxt.setText(Html.fromHtml(onBoardingText), TextView.BufferType.SPANNABLE);
 
-
-        new Timer().schedule(
-                new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                            requestUserPermission.checkPermissions();
-                        }
-                    }
-                },
-                1500
-        );
-
         onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
         onBoardingBtn.setText("Let's Go");
         onBoardingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
-                startActivity(intent);
+                if (!requestUserPermission.isGranted()) {
+                    requestUserPermission.requestPermissions();
+                } else {
+                    Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestUserPermission.isGranted() || !ActivityCompat.shouldShowRequestPermissionRationale(this, RequestUserPermission.PERMISSIONS[0])) {
+            Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

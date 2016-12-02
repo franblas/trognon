@@ -12,7 +12,7 @@ public class RequestUserPermission {
 
     private Activity activity;
     private static final int REQUEST_CODE = 1;
-    private static String[] PERMISSIONS = {
+    public static String[] PERMISSIONS = {
             Manifest.permission.CAMERA
     };
 
@@ -20,18 +20,17 @@ public class RequestUserPermission {
         this.activity = activity;
     }
 
-    public void checkPermissions() {
-        // Check if we have permission
+    public Boolean isGranted() {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        return (permission == PackageManager.PERMISSION_GRANTED);
+    }
 
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS,
-                    REQUEST_CODE
-            );
-        }
+    public void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                activity,
+                PERMISSIONS,
+                REQUEST_CODE
+        );
     }
 
 }
