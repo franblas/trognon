@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
                     if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        Intent intent = new Intent(MainActivity.this, OnBoardingActivity.class);
-                        startActivity(intent);
                         return;
                     } else {
                         sharedData.onBoardingDone();
