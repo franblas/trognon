@@ -41,7 +41,7 @@ public class AboutActivity extends AppCompatActivity
         String aboutText = "About Trognon ...<br/><br/>" +
                 "Trognon is a small app to help you to remind the food you bought before it reaches the expiration date. " +
                 "Just scan barcodes of important food and Trognon will add it to your list and send notifications before food expired.<br/><br/>" +
-                "Trogon is <a href='https://en.wikipedia.org/wiki/Privacy_by_design'>private by design</a>, your list remains on your phone and is never used by any servers or analysers.<br/><br/>" +
+                "Trogon is <a href='https://en.wikipedia.org/wiki/Privacy_by_design'>private by design</a>, your data remains on your phone and is never used by any servers or analysers.<br/><br/>" +
                 "The app is using <a href='http://world.openfoodfacts.org/'>open food facts</a> database to get informations on products.<br/><br/>" +
                 "Version " + version;
         aboutTxt = (TextView) findViewById(R.id.aboutTxt);
