@@ -22,7 +22,7 @@ public class OnBoardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_AppCompat_NoActionBar);
         sharedData = new SharedData(this);
-        if (sharedData.onBoardingStatus()) {
+        if (sharedData.isOnBoardingDone()) {
             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
             startActivity(intent);
         }

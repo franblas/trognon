@@ -92,5 +92,4 @@ public class FoodListActivity extends AppCompatActivity
         }
 
     }
-
 }

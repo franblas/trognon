@@ -33,13 +33,13 @@ public class SharedData {
         sharedPreferences = context.getSharedPreferences(appPreferencesReference, Context.MODE_PRIVATE);
     }
 
-    public void onBoardingDone() {
+    public void setOnBoardingDone() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(onBoardingReference, true);
         editor.commit();
     }
 
-    public Boolean onBoardingStatus() {
+    public Boolean isOnBoardingDone() {
         return sharedPreferences.getBoolean(onBoardingReference, false);
     }
 

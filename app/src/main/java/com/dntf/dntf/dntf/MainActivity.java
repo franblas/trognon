@@ -24,7 +24,6 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         ListView mListView = (ListView) findViewById(R.id.recipeListView);
 
+        Log.i("YOOOOOO", getIntent().toString());
+
         if (listItems.size() == 0) { listItems.add(emptyListMessage); }
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
@@ -86,11 +87,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     if (!requestUserPermission.isGranted()) {
                         return;
                     } else {
-                        sharedData.onBoardingDone();
+                        sharedData.setOnBoardingDone();
                     }
                     cameraSource.start(cameraView.getHolder());
-                } catch (IOException e) {
-                    Log.e("CAMERA SOURCE", e.getMessage());
+                } catch (Exception e) {
+                    Log.i("CAMERA SOURCE", e.getMessage());
                 }
             }
 
@@ -185,18 +186,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
     }
 
-    private void setCameraFacing() {
-        int facingStatus = cameraSource.getCameraFacing();
-        if (facingStatus == CameraSource.CAMERA_FACING_BACK) {
-            sharedData.setCameraFacingStatus(CameraSource.CAMERA_FACING_FRONT);
-        } else {
-            sharedData.setCameraFacingStatus(CameraSource.CAMERA_FACING_BACK);
-        }
-        // reload activity
-        finish();
-        startActivity(getIntent());
-    }
-
     private void setBarcodeInfo(final String val) {
         barcodeInfo.post(new Runnable() {
             @Override
@@ -234,19 +223,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     setCameraFlashMode();
                 } catch (Exception e) {
                     Log.i("Flash Mode", e.getMessage());
-                }
-
-            }
-        });
-
-        Button reverseCameraBtn = (Button) customView.findViewById(R.id.actionBarReverseCamera);
-        reverseCameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    setCameraFacing();
-                } catch (Exception e) {
-                    Log.i("Camera Facing", e.getMessage());
                 }
 
             }

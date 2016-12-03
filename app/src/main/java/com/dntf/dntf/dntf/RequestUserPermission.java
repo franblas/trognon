@@ -12,7 +12,7 @@ public class RequestUserPermission {
 
     private Activity activity;
     private static final int REQUEST_CODE = 1;
-    public static String[] PERMISSIONS = {
+    protected static String[] PERMISSIONS = {
             Manifest.permission.CAMERA
     };
 
