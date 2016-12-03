@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         ListView mListView = (ListView) findViewById(R.id.recipeListView);
 
-        Log.i("YOOOOOO", getIntent().toString());
-
         if (listItems.size() == 0) { listItems.add(emptyListMessage); }
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 .build();
         cameraSource = new CameraSource.Builder(this, detector)
                 .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)
-                .setFacing(sharedData.getCameraFacingStatus())
+                .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {

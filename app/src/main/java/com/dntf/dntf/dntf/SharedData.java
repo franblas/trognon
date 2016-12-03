@@ -3,7 +3,6 @@ package com.dntf.dntf.dntf;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.android.gms.vision.CameraSource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,7 +21,6 @@ public class SharedData {
     final private String productsReference = "products";
     final private String onBoardingReference = "onBoarding";
     final private String cameraFlashModeReference = "cameraFlashMode";
-    final private String cameraFacingReference = "cameraFacing";
 
     private Gson gson;
 
@@ -50,16 +48,6 @@ public class SharedData {
     public void setCameraFlashModeStatus(Boolean status) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(cameraFlashModeReference, status);
-        editor.commit();
-    }
-
-    public int getCameraFacingStatus() {
-        return sharedPreferences.getInt(cameraFacingReference, CameraSource.CAMERA_FACING_BACK);
-    }
-
-    public void setCameraFacingStatus(int status) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(cameraFacingReference, status);
         editor.commit();
     }
 
