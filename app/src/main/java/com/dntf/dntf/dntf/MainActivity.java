@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private RequestUserPermission requestUserPermission = new RequestUserPermission(this);
 
     private long TWO_SECS_DELAY = 2000;
-    private String emptyListMessage = getString(R.string.scan_nothing);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         ListView mListView = (ListView) findViewById(R.id.recipeListView);
 
-        if (listItems.size() == 0) { listItems.add(emptyListMessage); }
+        if (listItems.size() == 0) { listItems.add(getString(R.string.scan_nothing)); }
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
 
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     @Override
                     public void run() {
                         String productName = FoodApi.getProductName(foodApiResult);
-                        if (listItems.get(0) == emptyListMessage) { listItems.clear(); }
+                        if (listItems.get(0) == getString(R.string.scan_nothing)) { listItems.clear(); }
                         if (productName != "") {
                             listItems.add(0, productName);
                         } else {

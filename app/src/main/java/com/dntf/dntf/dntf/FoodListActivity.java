@@ -26,7 +26,6 @@ public class FoodListActivity extends AppCompatActivity
 
     private ListView mListView;
     private SharedData sharedData;
-    private List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,7 @@ public class FoodListActivity extends AppCompatActivity
             FoodList adapter = new FoodList(this, products);
             mListView.setAdapter(adapter);
         } else {
+            List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, emptyListMessage);
             mListView.setAdapter(adapter);
         }
