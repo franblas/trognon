@@ -30,11 +30,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
 
-        String onBoardingText = "Welcome to Trognon !<br/><br/>" +
-                "Trognon is a small app to help you to remind the food you bought before it reaches the expiration date. " +
-                "Just scan barcodes of important food and Trognon will add it to your list and send notifications before food expired.<br/><br/>" +
-                "Trogon is <a href='https://en.wikipedia.org/wiki/Privacy_by_design'>private by design</a>, your data remains on your phone and is never used by any servers or analysers.<br/><br/>" +
-                "To be able to scan products, the app need the permission to use the camera, let's enable it on the next screen.";
+        String onBoardingText = getString(R.string.onBoarding);
         onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
         onBoardingTxt.setClickable(true);
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());

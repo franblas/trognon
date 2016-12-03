@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Trognon</string>
+
+    <string name="title_section1">Scanner</string>
+    <string name="title_section2">Liste</string>
+    <string name="title_section3">A Propos</string>
+
+    <string name="title_section4">Détails</string>
+
+    <string name="about_txt">
+        <Data>
+        <![CDATA[
+        A propos de Trognon ...<br/><br/>
+        Trognon est une application qui vous aide à vous rappeler de la nourriture que vous avez acheté avant qu\'elle n\'atteigne la date d\'expiration. Il suffit de scanner les codes à barres d\'aliments importants et Trognon l\'ajoutera à votre liste et vous envera des notifications avant que la nourriture ne périme. <br/><br/>
+        Trogon est <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'> private by design </a>, vos données restent sur votre téléphone et ne sont jamais utilisées par des serveurs ou des analyseurs. <br/><br/>
+        L\'application utilise la base de données de <a href=\'http://world.openfoodfacts.org/\'> open foods facts </a> pour obtenir des informations sur les produits. <br/><br/>
+        ]]>
+        </Data>
+    </string>
+
+    <string name="details_brand">Marque</string>
+    <string name="details_quantity">Quantité</string>
+    <string name="details_country">Pays</string>
+    <string name="details_ingredients">Ingredients</string>
+    <string name="details_nutriments">Nutriments</string>
+    <string name="details_nutrition">Score nutritionnel</string>
+
+    <string name="food_list_nothing">Auncun élément dans la liste pour le moment ...</string>
+    <string name="scan_nothing">Auncun élément scanné pour le moment ...</string>
+
+    <string name="onboarding2">
+        <Data>
+        <![CDATA[
+        Trognon peut-elle utiliser la camera pour scanné des produits ?<br/><br/>
+        N\'oubliez pas Trogon est <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'>private by design</a>, vos données sont en sécurité sur votre smartphone.
+        ]]>
+        </Data>
+    </string>
+    <string name="onboarding2_btn">C'est parti</string>
+
+    <string name="onBoarding">
+        <Data>
+        <![CDATA[
+        Bienvenue sur Trognon !<br/><br/>
+        Trognon est une application qui vous aide à vous rappeler de la nourriture que vous avez acheté avant qu\'elle n\'atteigne la date d\'expiration. Il suffit de scanner les codes à barres d\'aliments importants et Trognon l\'ajoutera à votre liste et vous envera des notifications avant que la nourriture ne périme. <br/><br/>
+        Trogon est <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'> private by design </a>, vos données restent sur votre téléphone et ne sont jamais utilisées par des serveurs ou des analyseurs. <br/><br/>
+        Pour pouvoir scanné des produits, l\'application requiert la permission d\'utiliser la camera, activons le sur l\'écran suivant.
+        ]]>
+        </Data>
+    </string>
+    <string name="onBoarding_btn">Compris</string>
+
+    <string name="notification_title">N\'oubliez pas de tous les manger</string>
+    <string name="notification_content_1">Vous avez</string>
+    <string name="notification_content_2">produits qui périme(nt) bientôt.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+</resources>

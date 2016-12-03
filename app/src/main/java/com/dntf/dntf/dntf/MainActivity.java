@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private RequestUserPermission requestUserPermission = new RequestUserPermission(this);
 
     private long TWO_SECS_DELAY = 2000;
-    private String emptyListMessage = "Nothing scanned for now...";
+    private String emptyListMessage = getString(R.string.scan_nothing);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

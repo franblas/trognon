@@ -65,7 +65,7 @@ public class FoodDetailsActivity extends AppCompatActivity
         if (product != null) {
             try {
                 List<String> keys = Arrays.asList("brands", "quantity", "countries", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
-                List<String> formattedKeys = Arrays.asList("Brand", "Quantity", "Country", "Ingredients", "Nutriments", "Nutrition score");
+                List<String> formattedKeys = Arrays.asList(getString(R.string.details_brand), getString(R.string.details_quantity), getString(R.string.details_country), getString(R.string.details_ingredients), getString(R.string.details_nutriments), getString(R.string.details_nutrition));
                 for (int i=0; i<keys.size(); i++) {
                     String key = keys.get(i);
                     String formattedKey = formattedKeys.get(i);

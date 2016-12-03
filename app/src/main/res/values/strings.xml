@@ -7,6 +7,53 @@
 
     <string name="title_section4">Details</string>
 
+    <string name="about_txt">
+        <Data>
+        <![CDATA[
+        About Trognon ...<br/><br/>
+        Trognon is a small app to help you to remind the food you bought before it reaches the expiration date. Just scan barcodes of important food and Trognon will add it to your list and send notifications before food expired.<br/><br/>
+        Trogon is <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'>private by design</a>, your data remains on your phone and is never used by any servers or analysers.<br/><br/>
+        The app is using <a href=\'http://world.openfoodfacts.org/\'>open food facts</a> database to get informations on products.<br/><br/>
+        ]]>
+        </Data>
+    </string>
+
+    <string name="details_brand">Brand</string>
+    <string name="details_quantity">Quantity</string>
+    <string name="details_country">Country</string>
+    <string name="details_ingredients">Ingredients</string>
+    <string name="details_nutriments">Nutriments</string>
+    <string name="details_nutrition">Nutrition score</string>
+
+    <string name="food_list_nothing">Nothing registered on the list for now...</string>
+    <string name="scan_nothing">Nothing scanned for now...</string>
+
+    <string name="onboarding2">
+        <Data>
+        <![CDATA[
+        Can Trognon use the camera to scan products ?<br/><br/>
+        Remember Trogon is <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'>private by design</a>, your data is safe.
+        ]]>
+        </Data>
+    </string>
+    <string name="onboarding2_btn">Let's go</string>
+
+    <string name="onBoarding">
+        <Data>
+        <![CDATA[
+        Welcome to Trognon !<br/><br/>
+        Trognon is a small app to help you to remind the food you bought before it reaches the expiration date. Just scan barcodes of important food and Trognon will add it to your list and send notifications before food expired.<br/><br/>
+        Trogon is <a href=\'https://en.wikipedia.org/wiki/Privacy_by_design\'>private by design</a>, your data remains on your phone and is never used by any servers or analysers.<br/><br/>
+        To be able to scan products, the app need the permission to use the camera, let's enable it on the next screen.
+        ]]>
+        </Data>
+    </string>
+    <string name="onBoarding_btn">Understood</string>
+
+    <string name="notification_title">Remember to eat them all</string>
+    <string name="notification_content_1">You have</string>
+    <string name="notification_content_2">products that will expire soon.</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

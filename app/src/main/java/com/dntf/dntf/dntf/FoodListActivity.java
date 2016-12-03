@@ -26,7 +26,7 @@ public class FoodListActivity extends AppCompatActivity
 
     private ListView mListView;
     private SharedData sharedData;
-    private List<String> emptyListMessage = Arrays.asList("Nothing registered on the list for now...");
+    private List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

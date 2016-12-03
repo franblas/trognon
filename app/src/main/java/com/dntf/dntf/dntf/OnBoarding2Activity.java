@@ -25,15 +25,14 @@ public class OnBoarding2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
 
-        String onBoardingText = "Can Trognon use the camera to scan products ?<br/><br/>" +
-                "Remember Trogon is <a href='https://en.wikipedia.org/wiki/Privacy_by_design'>private by design</a>, your data is safe.";
+        String onBoardingText = getString(R.string.onboarding2);
         onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
         onBoardingTxt.setClickable(true);
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());
         onBoardingTxt.setText(Html.fromHtml(onBoardingText), TextView.BufferType.SPANNABLE);
 
         onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
-        onBoardingBtn.setText("Let's Go");
+        onBoardingBtn.setText(getString(R.string.onboarding2_btn));
         onBoardingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

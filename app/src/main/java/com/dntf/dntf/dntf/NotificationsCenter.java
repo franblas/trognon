@@ -28,7 +28,6 @@ public class NotificationsCenter extends BroadcastReceiver {
             ExpiredFoodLogic.CRITICAL_STATUS,
             ExpiredFoodLogic.SEVERE_STATUS,
             ExpiredFoodLogic.INTERMEDIATE_STATUS));
-    private final String notificationTitle = "Remember to eat them all";
 
     public static void setupAlarm(AppCompatActivity activity) {
         Calendar calendar = Calendar.getInstance();
@@ -42,6 +41,7 @@ public class NotificationsCenter extends BroadcastReceiver {
     }
 
     private void sendNotification(Context context, int nbProducts) {
+        final String notificationTitle = context.getString(R.string.notification_title);
         Intent intent = new Intent(context, FoodListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -56,7 +56,7 @@ public class NotificationsCenter extends BroadcastReceiver {
          .setSmallIcon(R.drawable.dntf_logo_dark)
          .setTicker(notificationTitle)
          .setContentTitle(notificationTitle)
-         .setContentText("You have " + nbProducts + " products that will expire soon.")
+         .setContentText(context.getString(R.string.notification_content_1) + " " + nbProducts + " " + context.getString(R.string.notification_content_2))
          .setDefaults(Notification.DEFAULT_SOUND)
          .setContentIntent(contentIntent)
          .setContentInfo(notificationTitle);
