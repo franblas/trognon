@@ -41,7 +41,8 @@ has a sliding menu on the left and an action bar on top.
 ### Permissions
 Since newest versions of Android, it is not sufficient to set user permissions into the `Manifest` for some of them.
 Required permissions are prompted during the on boarding, a special class `RequestUserPermission` manage the logic.
-In this case the camera is the only permission we asked for.
+In this case the camera is the only permission we asked for. Also the app use some dependencies that ask more permissions,
+we simply force the app to remove them into the `Manifest` as we don't need them.
 
 ### Notifications
 Notifications are implemented into the  `NotificationsCenter` class. The logic is to setup a recurrent alarm
@@ -58,3 +59,6 @@ object.
 ## Develop your own backend
 Trognon is using the [open food facts api](http://world.openfoodfacts.org/data) in order to fetch informations for products.
 If you want to develop your own backend, there is [an example](backend/) of code.
+
+## Licensing
+Trognon is licensed under the MIT License. See [LICENSE](LICENSE) for the full license text.
