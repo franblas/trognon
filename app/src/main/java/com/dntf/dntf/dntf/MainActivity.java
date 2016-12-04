@@ -144,27 +144,35 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                         TWO_SECS_DELAY
                 );
 
-                try {
-                    foodApiResult = FoodApi.getProductFromCode(barcodeValue);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                runOnUiThread(new Runnable() {
+                //Get infos from api
+                Thread thread = new Thread(new Runnable(){
                     @Override
-                    public void run() {
-                        String productName = FoodApi.getProductName(foodApiResult);
-                        if (listItems.get(0) == getString(R.string.scan_nothing)) { listItems.clear(); }
-                        if (productName != "") {
-                            listItems.add(0, productName);
-                        } else {
-                            listItems.add(0, barcodeValue);
+                    public void run(){
+                        try {
+                            foodApiResult = FoodApi.getProductFromCode(barcodeValue);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        sharedData.addProductToList(foodApiResult, productName, barcodeValue);
 
-                        adapter.notifyDataSetChanged();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String productName = FoodApi.getProductName(foodApiResult);
+                                if (listItems.get(0) == getString(R.string.scan_nothing)) { listItems.clear(); }
+                                if (productName != "") {
+                                    listItems.add(0, productName);
+                                } else {
+                                    listItems.add(0, barcodeValue);
+                                }
+                                sharedData.addProductToList(foodApiResult, productName, barcodeValue);
+
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
                     }
                 });
+                thread.start();
+
             }
         });
     }
@@ -221,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 } catch (Exception e) {
                     Log.i("Flash Mode", e.getMessage());
                 }
-
             }
         });
 

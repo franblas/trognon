@@ -18,6 +18,7 @@
         </Data>
     </string>
 
+    <string name="details_notfound">Aucun détails trouvés...</string>
     <string name="details_brand">Marque</string>
     <string name="details_quantity">Quantité</string>
     <string name="details_country">Pays</string>

@@ -26,8 +26,9 @@ import java.util.Map;
 public class FoodDetailsActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private String noDetailsFound = "No details found...";
     private int expiredFoodStatus;
+    private String productName = "";
+    private String details = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,31 +37,44 @@ public class FoodDetailsActivity extends AppCompatActivity
         
         this.setupCustomActionBar();
 
-        Bundle bExtras = getIntent().getExtras();
+        final Bundle bExtras = getIntent().getExtras();
 
-        String productName = "";
-        JSONObject product = null;
-        try {
-            product = new JSONObject(bExtras.getString(FoodList.EXTRA_PRODUCT_KEY));
-            productName = FoodApi.getProductName(product);
-            expiredFoodStatus = bExtras.getInt(FoodList.EXTRA_EXPIRED_FOOD_STATUS_KEY);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                JSONObject product = null;
+                try {
+                    product = new JSONObject(bExtras.getString(FoodList.EXTRA_PRODUCT_KEY));
+                    productName = FoodApi.getProductName(product);
+                    expiredFoodStatus = bExtras.getInt(FoodList.EXTRA_EXPIRED_FOOD_STATUS_KEY);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                details = buildDetails(product);
 
-        ImageView imageView = (ImageView) this.findViewById(R.id.foodDetailIcon);
-        imageView.setColorFilter(expiredFoodStatus);
-        imageView.setImageResource(R.drawable.dntf_logo_dark);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageView imageView = (ImageView) FoodDetailsActivity.this.findViewById(R.id.foodDetailIcon);
+                        imageView.setColorFilter(expiredFoodStatus);
+                        imageView.setImageResource(R.drawable.dntf_logo_dark);
 
-        TextView foodDetailProductName = (TextView) this.findViewById(R.id.foodDetailProductName);
-        foodDetailProductName.setText(productName);
+                        TextView foodDetailProductName = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailProductName);
+                        foodDetailProductName.setText(productName);
 
-        TextView foodDetailTxt = (TextView) this.findViewById(R.id.foodDetailTxt);
-        foodDetailTxt.setText(Html.fromHtml(buildDetails(product)));
+                        TextView foodDetailTxt = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailTxt);
+                        foodDetailTxt.setText(Html.fromHtml(details));
+                    }
+                });
+
+            }
+        });
+        thread.start();
 
     }
 
     private String buildDetails(JSONObject product) {
+        String noDetailsFound = getString(R.string.details_notfound);
         String res = "";
         if (product != null) {
             try {

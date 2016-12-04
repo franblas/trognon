@@ -70,9 +70,20 @@ public class FoodList extends ArrayAdapter<JSONObject> {
         delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                products.remove(position);
-                sharedData.newProductsList(products);
-                notifyDataSetChanged();
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run(){
+                        products.remove(position);
+                        sharedData.newProductsList(products);
+                        context.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                notifyDataSetChanged();
+                            }
+                        });
+                    }
+                });
+                thread.start();
             }
         });
 

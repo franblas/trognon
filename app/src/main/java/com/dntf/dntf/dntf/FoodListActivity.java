@@ -35,19 +35,24 @@ public class FoodListActivity extends AppCompatActivity
         this.setupCustomActionBar();
 
         sharedData = new SharedData(this);
-        ArrayList<JSONObject> products = sharedData.getProductsList();
 
-        mListView = (ListView) findViewById(R.id.recipeListView2);
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                ArrayList<JSONObject> products = sharedData.getProductsList();
+                mListView = (ListView) findViewById(R.id.recipeListView2);
 
-        if (products.size() > 0) {
-            FoodList adapter = new FoodList(this, products);
-            mListView.setAdapter(adapter);
-        } else {
-            List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, emptyListMessage);
-            mListView.setAdapter(adapter);
-        }
-
+                if (products.size() > 0) {
+                    FoodList adapter = new FoodList(FoodListActivity.this, products);
+                    mListView.setAdapter(adapter);
+                } else {
+                    List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
+                    ArrayAdapter adapter = new ArrayAdapter(FoodListActivity.this, android.R.layout.simple_list_item_1, emptyListMessage);
+                    mListView.setAdapter(adapter);
+                }
+            }
+        });
+        thread.start();
     }
 
     private void setupCustomActionBar() {
