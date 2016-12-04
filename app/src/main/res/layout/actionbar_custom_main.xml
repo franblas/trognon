@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/actionBarManageCamera"
-        android:background="@drawable/stop_camera"
+        android:background="@drawable/start_camera"
         android:layout_alignParentRight="true"
         android:layout_marginTop="3dp"
         android:layout_marginRight="4dp"

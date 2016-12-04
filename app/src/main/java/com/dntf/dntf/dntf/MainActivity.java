@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 );
 
                 //Set barcode info on the camera when detected
-                setBarcodeInfo("Found: " + barcodeValue);
+                setBarcodeInfo(getString(R.string.scan_barcodeinfo) + ": " + barcodeValue);
                 new Timer().schedule(
                         new TimerTask() {
                             @Override
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             cameraSource.start(cameraView.getHolder());
             stopCameraAfterNoActivity(); // Launch timer for no activity detection
         } catch (Exception e) {
-            Log.i("CAMERA SOURCE", e.getMessage());
+            e.printStackTrace();
         }
 
         runOnUiThread(new Runnable() {
@@ -211,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             public void run() {
                 cameraView.setVisibility(View.GONE);
                 Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarManageCamera);
-                btn.setBackground(getResources().getDrawable(R.drawable.start_camera));
+                btn.setBackground(getResources().getDrawable(R.drawable.stop_camera));
 
                 barcodeInfo.setTextColor(Color.BLACK);
                 setBarcodeInfo(getString(R.string.sleep_mode_camera));
@@ -252,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 public void run() {
                     cameraView.setVisibility(View.VISIBLE);
                     Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarManageCamera);
-                    btn.setBackground(getResources().getDrawable(R.drawable.stop_camera));
+                    btn.setBackground(getResources().getDrawable(R.drawable.start_camera));
                 }
             });
 
@@ -317,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 try {
                     setCameraFlashMode();
                 } catch (Exception e) {
-                    Log.i("Flash Mode", e.getMessage());
+                    e.printStackTrace();
                 }
             }
         });
@@ -329,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 try {
                     setStartCameraMode();
                 } catch (Exception e) {
-                    Log.i("Manage camera Mode", e.getMessage());
+                    e.printStackTrace();
                 }
             }
         });

@@ -49,7 +49,8 @@ public class FoodList extends ArrayAdapter<JSONObject> {
         imageView.setImageResource(R.drawable.dntf_logo_dark);
 
         TextView productNameTxt = (TextView) rowView.findViewById(R.id.productName);
-        productNameTxt.setText(FoodApi.getProductName(products.get(position)));
+        String productTxt = FoodApi.getProductName(products.get(position));
+        productNameTxt.setText(productTxt.trim().replace(".", "").replace("E12", ""));
         productNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,7 +1,5 @@
 package com.dntf.dntf.dntf;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,14 +37,14 @@ public class FoodApi {
             String result = sb.toString();
             jObject = new JSONObject(result).getJSONObject("product");
         } catch (Exception e) {
-            Log.e("Ooops", e.getMessage());
+            e.printStackTrace();
         } finally {
             if (in != null) {
                 try {
                     in.close();
                 }
                 catch (Exception e) {
-                    Log.e("Ooops", e.getMessage());
+                    e.printStackTrace();
                 }
             }
             urlConnection.disconnect();
