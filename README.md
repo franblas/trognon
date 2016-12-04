@@ -21,9 +21,8 @@ an action action bar on top.
 
 - `Main`  
 The main activity implements the logic for the scanner using the smartphone camera. It also
-setups the alarm manager for notifications (see below for more details). If the user permissions
-are not allowed it redirects to the on boarding (first time only). The activity has a sliding menu
-on the left and an action bar on top.
+setups the alarm manager for notifications (see below for more details). The camera is paused automatcialy
+if there is no activity for about 30s. The activity has a sliding menu on the left and an action bar on top.
 
 - `About`  
 The about activity is quite the same as the on boarding one, however it has a sliding menu on the left
