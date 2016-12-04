@@ -28,6 +28,7 @@
 
     <string name="food_list_nothing">Auncun élément dans la liste pour le moment ...</string>
     <string name="scan_nothing">Auncun élément scanné pour le moment ...</string>
+    <string name="sleep_mode_camera">La camera a été mise en veille, réactivez la en cliquant sur l\'icône en haut à droite.</string>
 
     <string name="onboarding2">
         <Data>

@@ -21,6 +21,7 @@ public class SharedData {
     final private String productsReference = "products";
     final private String onBoardingReference = "onBoarding";
     final private String cameraFlashModeReference = "cameraFlashMode";
+    final private String cameraStartModeReference = "cameraStartMode";
 
     private Gson gson;
 
@@ -48,6 +49,16 @@ public class SharedData {
     public void setCameraFlashModeStatus(Boolean status) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(cameraFlashModeReference, status);
+        editor.commit();
+    }
+
+    public Boolean getCameraStartModeStatus() {
+        return sharedPreferences.getBoolean(cameraStartModeReference, true);
+    }
+
+    public void setCameraStartModeStatus(Boolean status) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(cameraStartModeReference, status);
         editor.commit();
     }
 

@@ -1,6 +1,7 @@
 package com.dntf.dntf.dntf;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private BarcodeDetector detector;
     private ArrayList<String> listItems = new ArrayList<>();
     private ArrayAdapter adapter;
+    private static Timer timerInactivityCamera;
 
     private SharedData sharedData;
     private String barcodeValueBuffer = "";
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private RequestUserPermission requestUserPermission = new RequestUserPermission(this);
 
     private long TWO_SECS_DELAY = 2000;
+    private long INACTIVITY_CAMERA_DELAY = 30000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,20 +83,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                try {
-                    if (!requestUserPermission.isGranted()) {
-                        return;
-                    } else {
-                        sharedData.setOnBoardingDone();
-                    }
-                    cameraSource.start(cameraView.getHolder());
-                } catch (Exception e) {
-                    Log.i("CAMERA SOURCE", e.getMessage());
-                }
+                startCamera();
             }
 
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
@@ -113,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 if (barcodes.size() <= 0) {
                     return;
                 }
+
+                restartInactivityCameraTimer();
 
                 final String barcodeValue = barcodes.valueAt(0).displayValue;
 
@@ -177,6 +174,99 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         });
     }
 
+    private void startCamera() {
+        try {
+            if (!requestUserPermission.isGranted()) {
+                return;
+            } else {
+                sharedData.setOnBoardingDone();
+            }
+            cameraSource.start(cameraView.getHolder());
+            stopCameraAfterNoActivity(); // Launch timer for no activity detection
+        } catch (Exception e) {
+            Log.i("CAMERA SOURCE", e.getMessage());
+        }
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                barcodeInfo.setTextColor(Color.WHITE);
+                setBarcodeInfo("");
+            }
+        });
+    }
+
+    private void stopCamera() {
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                cameraSource.stop();
+                sharedData.setCameraStartModeStatus(false);
+            }
+        });
+        thread.start();
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cameraView.setVisibility(View.GONE);
+                Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarManageCamera);
+                btn.setBackground(getResources().getDrawable(R.drawable.start_camera));
+
+                barcodeInfo.setTextColor(Color.BLACK);
+                setBarcodeInfo(getString(R.string.sleep_mode_camera));
+            }
+        });
+    }
+
+    private void stopCameraAfterNoActivity() {
+        timerInactivityCamera = new Timer("No Activity Timer");
+        timerInactivityCamera.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        stopCamera();
+                    }
+                },
+                INACTIVITY_CAMERA_DELAY
+        );
+    }
+
+    private void restartInactivityCameraTimer() {
+        try {
+            timerInactivityCamera.cancel();
+            timerInactivityCamera.purge();
+            stopCameraAfterNoActivity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setStartCameraMode() {
+        Boolean cameraStarted = sharedData.getCameraStartModeStatus();
+        if (cameraStarted) {
+            stopCamera();
+        } else {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    cameraView.setVisibility(View.VISIBLE);
+                    Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarManageCamera);
+                    btn.setBackground(getResources().getDrawable(R.drawable.stop_camera));
+                }
+            });
+
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    sharedData.setCameraStartModeStatus(true);
+                    startCamera();
+                }
+            });
+            thread.start();
+        }
+    }
+
     private void setCameraFlashMode() {
         Boolean flashOn = sharedData.getCameraFlashModeStatus();
         Button btn = (Button) getSupportActionBar().getCustomView().findViewById(R.id.actionBarFlashCamera);
@@ -228,6 +318,18 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     setCameraFlashMode();
                 } catch (Exception e) {
                     Log.i("Flash Mode", e.getMessage());
+                }
+            }
+        });
+
+        Button manageCamera = (Button) customView.findViewById(R.id.actionBarManageCamera);
+        manageCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    setStartCameraMode();
+                } catch (Exception e) {
+                    Log.i("Manage camera Mode", e.getMessage());
                 }
             }
         });

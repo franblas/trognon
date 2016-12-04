@@ -28,6 +28,7 @@
 
     <string name="food_list_nothing">Nothing registered on the list for now...</string>
     <string name="scan_nothing">Nothing scanned for now...</string>
+    <string name="sleep_mode_camera">The camera has been paused, reactivate it by clicking on top right icon.</string>
 
     <string name="onboarding2">
         <Data>

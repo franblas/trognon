@@ -43,12 +43,22 @@ public class FoodListActivity extends AppCompatActivity
                 mListView = (ListView) findViewById(R.id.recipeListView2);
 
                 if (products.size() > 0) {
-                    FoodList adapter = new FoodList(FoodListActivity.this, products);
-                    mListView.setAdapter(adapter);
+                    final FoodList adapter = new FoodList(FoodListActivity.this, products);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListView.setAdapter(adapter);
+                        }
+                    });
                 } else {
                     List<String> emptyListMessage = Arrays.asList(getString(R.string.food_list_nothing));
-                    ArrayAdapter adapter = new ArrayAdapter(FoodListActivity.this, android.R.layout.simple_list_item_1, emptyListMessage);
-                    mListView.setAdapter(adapter);
+                    final ArrayAdapter adapter = new ArrayAdapter(FoodListActivity.this, android.R.layout.simple_list_item_1, emptyListMessage);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListView.setAdapter(adapter);
+                        }
+                    });
                 }
             }
         });
