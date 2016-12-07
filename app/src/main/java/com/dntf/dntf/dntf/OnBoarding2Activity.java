@@ -39,6 +39,7 @@ public class OnBoarding2Activity extends AppCompatActivity {
                 if (!requestUserPermission.isGranted()) {
                     requestUserPermission.requestPermissions();
                 } else {
+                    NotificationsCenter.setupAlarm(OnBoarding2Activity.this); // Setup notification
                     Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -49,6 +50,7 @@ public class OnBoarding2Activity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestUserPermission.isGranted() || !ActivityCompat.shouldShowRequestPermissionRationale(this, RequestUserPermission.PERMISSIONS[0])) {
+            NotificationsCenter.setupAlarm(OnBoarding2Activity.this); // Setup notification
             Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
             startActivity(intent);
         }

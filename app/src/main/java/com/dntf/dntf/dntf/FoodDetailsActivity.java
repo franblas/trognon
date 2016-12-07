@@ -31,8 +31,6 @@ public class FoodDetailsActivity extends AppCompatActivity
     private String productName = "";
     private String barcodeValue = "";
     private String details = null;
-    private List<String> keys = Arrays.asList("brands", "quantity", "countries", "code", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
-    private List<String> formattedKeys = Arrays.asList(getString(R.string.details_brand), getString(R.string.details_quantity), getString(R.string.details_country), getString(R.string.details_code), getString(R.string.details_ingredients), getString(R.string.details_nutriments), getString(R.string.details_nutrition));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +84,8 @@ public class FoodDetailsActivity extends AppCompatActivity
     private String buildDetails(JSONObject product) {
         String noDetailsFound = getString(R.string.details_notfound);
         String res = "";
+        List<String> keys = Arrays.asList("brands", "quantity", "countries", "code", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
+        List<String> formattedKeys = Arrays.asList(getString(R.string.details_brand), getString(R.string.details_quantity), getString(R.string.details_country), getString(R.string.details_code), getString(R.string.details_ingredients), getString(R.string.details_nutriments), getString(R.string.details_nutrition));
         if (product != null) {
             try {
                 for (int i=0; i<keys.size(); i++) {

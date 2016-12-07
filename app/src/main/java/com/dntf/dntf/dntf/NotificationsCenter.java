@@ -35,8 +35,9 @@ public class NotificationsCenter extends BroadcastReceiver {
         calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND, 00);
         Intent intent = new Intent(activity, NotificationsCenter.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager am = (AlarmManager) activity.getSystemService(MainActivity.ALARM_SERVICE);
+        am.cancel(pendingIntent);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
