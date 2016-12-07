@@ -15,10 +15,13 @@ import android.widget.TextView;
  */
 public class OnBoarding2Activity extends AppCompatActivity {
 
-    private TextView onBoardingTxt;
-    private Button onBoardingBtn;
-
     private RequestUserPermission requestUserPermission = new RequestUserPermission(this);
+
+    private void startMainActivity() {
+        NotificationsCenter.setupAlarm(OnBoarding2Activity.this); // Setup notification
+        Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_AppCompat_NoActionBar);
@@ -26,12 +29,12 @@ public class OnBoarding2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_on_boarding);
 
         String onBoardingText = getString(R.string.onboarding2);
-        onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
+        TextView onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
         onBoardingTxt.setClickable(true);
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());
         onBoardingTxt.setText(Html.fromHtml(onBoardingText), TextView.BufferType.SPANNABLE);
 
-        onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
+        Button onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
         onBoardingBtn.setText(getString(R.string.onboarding2_btn));
         onBoardingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,9 +42,7 @@ public class OnBoarding2Activity extends AppCompatActivity {
                 if (!requestUserPermission.isGranted()) {
                     requestUserPermission.requestPermissions();
                 } else {
-                    NotificationsCenter.setupAlarm(OnBoarding2Activity.this); // Setup notification
-                    Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
-                    startActivity(intent);
+                    startMainActivity();
                 }
             }
         });
@@ -50,9 +51,7 @@ public class OnBoarding2Activity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestUserPermission.isGranted() || !ActivityCompat.shouldShowRequestPermissionRationale(this, RequestUserPermission.PERMISSIONS[0])) {
-            NotificationsCenter.setupAlarm(OnBoarding2Activity.this); // Setup notification
-            Intent intent = new Intent(OnBoarding2Activity.this, MainActivity.class);
-            startActivity(intent);
+            startMainActivity();
         }
     }
 }

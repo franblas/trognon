@@ -20,8 +20,6 @@ import android.widget.TextView;
 public class AboutActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private TextView aboutTxt;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +37,7 @@ public class AboutActivity extends AppCompatActivity
         }
 
         String aboutText = getString(R.string.about_txt) + "Version " + version;
-        aboutTxt = (TextView) findViewById(R.id.aboutTxt);
+        TextView aboutTxt = (TextView) findViewById(R.id.aboutTxt);
         aboutTxt.setClickable(true);
         aboutTxt.setMovementMethod(LinkMovementMethod.getInstance());
         aboutTxt.setText(Html.fromHtml(aboutText));

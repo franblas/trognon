@@ -14,14 +14,11 @@ import android.widget.TextView;
  */
 public class OnBoardingActivity extends AppCompatActivity {
 
-    private TextView onBoardingTxt;
-    private Button onBoardingBtn;
-    private SharedData sharedData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_AppCompat_NoActionBar);
-        sharedData = new SharedData(this);
+
+        SharedData sharedData = new SharedData(this);
         if (sharedData.isOnBoardingDone()) {
             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
             startActivity(intent);
@@ -31,12 +28,12 @@ public class OnBoardingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_on_boarding);
 
         String onBoardingText = getString(R.string.onBoarding);
-        onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
+        TextView onBoardingTxt = (TextView) findViewById(R.id.onBoardingTxt);
         onBoardingTxt.setClickable(true);
         onBoardingTxt.setMovementMethod(LinkMovementMethod.getInstance());
         onBoardingTxt.setText(Html.fromHtml(onBoardingText), TextView.BufferType.SPANNABLE);
 
-        onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
+        Button onBoardingBtn = (Button) findViewById(R.id.onBoardingBtn);
         onBoardingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
