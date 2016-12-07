@@ -7,7 +7,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,7 +28,6 @@ public class FoodDetailsActivity extends AppCompatActivity
 
     private int expiredFoodStatus;
     private String productName = "";
-    private String barcodeValue = "";
     private String details = null;
 
     @Override
@@ -48,14 +46,12 @@ public class FoodDetailsActivity extends AppCompatActivity
                 try {
                     product = new JSONObject(bExtras.getString(FoodList.EXTRA_PRODUCT_KEY));
                     productName = FoodApi.getProductName(product);
-                    barcodeValue = FoodApi.getCodeValue(product);
                     expiredFoodStatus = bExtras.getInt(FoodList.EXTRA_EXPIRED_FOOD_STATUS_KEY);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 details = buildDetails(product);
-                final String openFoodFactsLink = "http://world.openfoodfacts.org/product/" + barcodeValue;
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -64,11 +60,8 @@ public class FoodDetailsActivity extends AppCompatActivity
                         imageView.setColorFilter(expiredFoodStatus);
                         imageView.setImageResource(R.drawable.dntf_logo_dark);
 
-                        String foodDetailProductNameTxt = "<a href='"+openFoodFactsLink+"'>"+productName+"</a>";
                         TextView foodDetailProductName = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailProductName);
-                        foodDetailProductName.setClickable(true);
-                        foodDetailProductName.setMovementMethod(LinkMovementMethod.getInstance());
-                        foodDetailProductName.setText(Html.fromHtml(foodDetailProductNameTxt));
+                        foodDetailProductName.setText(productName);
 
                         TextView foodDetailTxt = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailTxt);
                         foodDetailTxt.setText(Html.fromHtml(details));
