@@ -22,7 +22,7 @@ import static com.dntf.dntf.dntf.FoodApi.getProductName;
 public class ApiTest {
 
     JSONObject obj = null;
-    List<String> detailKeys = Arrays.asList("brands", "quantity", "countries", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
+    List<String> detailKeys = Arrays.asList("brands", "quantity", "countries", "code","ingredients_text_debug", "nutriments", "nutrition_score_debug");
 
     private JSONObject loadProductData() {
         JSONObject obj = null;

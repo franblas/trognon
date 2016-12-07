@@ -18,6 +18,7 @@ public class FoodApi {
     static private String apiUrl = "http://world.openfoodfacts.org";
     static private String PRODUCT_NAME_KEY = "product_name";
     static public String BARCODE_SINGLE_KEY = "barcode_value";
+    static public String CODE_VALUE_KEY = "code";
     static private String ADDED_TIME_KEY = "dntf_added_time";
 
     static public JSONObject getProductFromCode(String code) throws JSONException {
@@ -64,6 +65,20 @@ public class FoodApi {
             }
         }
         return productName;
+    }
+
+    static public String getCodeValue(JSONObject foodApiResult) {
+        String codeValue = "";
+        try {
+            codeValue = foodApiResult.getString(CODE_VALUE_KEY);
+        } catch (JSONException e) {
+            try {
+                codeValue = foodApiResult.getString(BARCODE_SINGLE_KEY);
+            } catch (JSONException err) {
+                err.printStackTrace();
+            }
+        }
+        return codeValue;
     }
 
     static public long getAddedTime(JSONObject foodApiResult) {

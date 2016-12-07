@@ -22,6 +22,7 @@
     <string name="details_brand">Marque</string>
     <string name="details_quantity">Quantité</string>
     <string name="details_country">Pays</string>
+    <string name="details_code">Code-barre</string>
     <string name="details_ingredients">Ingredients</string>
     <string name="details_nutriments">Nutriments</string>
     <string name="details_nutrition">Score nutritionnel</string>
@@ -55,7 +56,7 @@
 
     <string name="notification_title">N\'oubliez pas de tous les manger</string>
     <string name="notification_content_1">Vous avez</string>
-    <string name="notification_content_2">produits qui périme(nt) bientôt.</string>
+    <string name="notification_content_2">produit(s) bientôt périmé(s).</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

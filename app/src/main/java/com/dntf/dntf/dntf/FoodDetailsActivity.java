@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,7 +29,10 @@ public class FoodDetailsActivity extends AppCompatActivity
 
     private int expiredFoodStatus;
     private String productName = "";
+    private String barcodeValue = "";
     private String details = null;
+    private List<String> keys = Arrays.asList("brands", "quantity", "countries", "code", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
+    private List<String> formattedKeys = Arrays.asList(getString(R.string.details_brand), getString(R.string.details_quantity), getString(R.string.details_country), getString(R.string.details_code), getString(R.string.details_ingredients), getString(R.string.details_nutriments), getString(R.string.details_nutrition));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +50,14 @@ public class FoodDetailsActivity extends AppCompatActivity
                 try {
                     product = new JSONObject(bExtras.getString(FoodList.EXTRA_PRODUCT_KEY));
                     productName = FoodApi.getProductName(product);
+                    barcodeValue = FoodApi.getCodeValue(product);
                     expiredFoodStatus = bExtras.getInt(FoodList.EXTRA_EXPIRED_FOOD_STATUS_KEY);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 details = buildDetails(product);
+                final String openFoodFactsLink = "http://world.openfoodfacts.org/product/" + barcodeValue;
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -59,8 +66,11 @@ public class FoodDetailsActivity extends AppCompatActivity
                         imageView.setColorFilter(expiredFoodStatus);
                         imageView.setImageResource(R.drawable.dntf_logo_dark);
 
+                        String foodDetailProductNameTxt = "<a href='"+openFoodFactsLink+"'>"+productName+"</a>";
                         TextView foodDetailProductName = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailProductName);
-                        foodDetailProductName.setText(productName);
+                        foodDetailProductName.setClickable(true);
+                        foodDetailProductName.setMovementMethod(LinkMovementMethod.getInstance());
+                        foodDetailProductName.setText(Html.fromHtml(foodDetailProductNameTxt));
 
                         TextView foodDetailTxt = (TextView) FoodDetailsActivity.this.findViewById(R.id.foodDetailTxt);
                         foodDetailTxt.setText(Html.fromHtml(details));
@@ -78,8 +88,6 @@ public class FoodDetailsActivity extends AppCompatActivity
         String res = "";
         if (product != null) {
             try {
-                List<String> keys = Arrays.asList("brands", "quantity", "countries", "ingredients_text_debug", "nutriments", "nutrition_score_debug");
-                List<String> formattedKeys = Arrays.asList(getString(R.string.details_brand), getString(R.string.details_quantity), getString(R.string.details_country), getString(R.string.details_ingredients), getString(R.string.details_nutriments), getString(R.string.details_nutrition));
                 for (int i=0; i<keys.size(); i++) {
                     String key = keys.get(i);
                     String formattedKey = formattedKeys.get(i);

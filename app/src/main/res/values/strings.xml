@@ -22,6 +22,7 @@
     <string name="details_brand">Brand</string>
     <string name="details_quantity">Quantity</string>
     <string name="details_country">Country</string>
+    <string name="details_code">Barcode</string>
     <string name="details_ingredients">Ingredients</string>
     <string name="details_nutriments">Nutriments</string>
     <string name="details_nutrition">Nutrition score</string>
