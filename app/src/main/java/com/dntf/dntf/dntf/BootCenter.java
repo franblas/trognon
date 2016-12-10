@@ -11,6 +11,6 @@ public class BootCenter extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationsCenter.setupAlarm(new MainActivity());
+        NotificationsCenter.setupAlarm(context);
     }
 }

@@ -8,7 +8,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 
 import org.json.JSONObject;
@@ -29,14 +28,14 @@ public class NotificationsCenter extends BroadcastReceiver {
             ExpiredFoodLogic.SEVERE_STATUS,
             ExpiredFoodLogic.INTERMEDIATE_STATUS));
 
-    public static void setupAlarm(AppCompatActivity activity) {
+    public static void setupAlarm(Context context) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 19);
         calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND, 00);
-        Intent intent = new Intent(activity, NotificationsCenter.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager am = (AlarmManager) activity.getSystemService(MainActivity.ALARM_SERVICE);
+        Intent intent = new Intent(context, NotificationsCenter.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager am = (AlarmManager) context.getSystemService(MainActivity.ALARM_SERVICE);
         am.cancel(pendingIntent);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
