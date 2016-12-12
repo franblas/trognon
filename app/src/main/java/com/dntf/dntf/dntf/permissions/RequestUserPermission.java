@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.permissions;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,7 +12,7 @@ public class RequestUserPermission {
 
     private Activity activity;
     private static final int REQUEST_CODE = 1;
-    protected static String[] PERMISSIONS = {
+    public static String[] PERMISSIONS = {
             Manifest.permission.CAMERA
     };
 

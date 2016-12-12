@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.notifications;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -9,6 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.NotificationCompat;
+
+import com.dntf.dntf.dntf.logic.ExpiredFoodLogic;
+import com.dntf.dntf.dntf.data.FoodApi;
+import com.dntf.dntf.dntf.FoodListActivity;
+import com.dntf.dntf.dntf.MainActivity;
+import com.dntf.dntf.dntf.R;
+import com.dntf.dntf.dntf.data.SharedData;
 
 import org.json.JSONObject;
 

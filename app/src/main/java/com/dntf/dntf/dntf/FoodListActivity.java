@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.data.SharedData;
+import com.dntf.dntf.dntf.fragments.FoodList;
+import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;

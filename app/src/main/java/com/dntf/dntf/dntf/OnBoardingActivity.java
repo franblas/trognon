@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.data.SharedData;
+
 /**
  * Created by franblas on 27/11/16.
  */

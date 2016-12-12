@@ -17,6 +17,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.data.FoodApi;
+import com.dntf.dntf.dntf.data.SharedData;
+import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
+import com.dntf.dntf.dntf.permissions.RequestUserPermission;
+import com.dntf.dntf.dntf.utils.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;

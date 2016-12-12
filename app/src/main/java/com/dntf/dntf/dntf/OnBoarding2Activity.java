@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.notifications.NotificationsCenter;
+import com.dntf.dntf.dntf.permissions.RequestUserPermission;
+
 /**
  * Created by franblas on 02/12/16.
  */

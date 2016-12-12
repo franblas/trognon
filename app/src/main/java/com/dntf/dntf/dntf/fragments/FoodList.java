@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.dntf.dntf.dntf.FoodDetailsActivity;
+import com.dntf.dntf.dntf.R;
+import com.dntf.dntf.dntf.data.FoodApi;
+import com.dntf.dntf.dntf.data.SharedData;
+import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
+import com.dntf.dntf.dntf.logic.ExpiredFoodLogic;
 
 import org.json.JSONObject;
 
@@ -25,8 +32,8 @@ public class FoodList extends ArrayAdapter<JSONObject> {
     private SharedData sharedData;
     private long now;
 
-    static protected String EXTRA_PRODUCT_KEY = "product";
-    static protected String EXTRA_EXPIRED_FOOD_STATUS_KEY = "expiredFoodStatus";
+    static public String EXTRA_PRODUCT_KEY = "product";
+    static public String EXTRA_EXPIRED_FOOD_STATUS_KEY = "expiredFoodStatus";
 
     public FoodList(Activity context, ArrayList<JSONObject> products) {
         super(context, R.layout.food_list, products);
@@ -50,7 +57,7 @@ public class FoodList extends ArrayAdapter<JSONObject> {
 
         TextView productNameTxt = (TextView) rowView.findViewById(R.id.productName);
         String productTxt = FoodApi.getProductName(products.get(position));
-        productNameTxt.setText(productTxt.trim().replace(".", "").replace("E12", ""));
+        productNameTxt.setText(productTxt.trim().replace("build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res", "").replace("E12", ""));
         productNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

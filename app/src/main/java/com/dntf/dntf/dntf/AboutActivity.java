@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
+
 /**
  * Created by franblas on 28/11/16.
  */

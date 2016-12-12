@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.logic;
 
 import android.graphics.Color;
 

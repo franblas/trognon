@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.utils;
 
 /*
  * Copyright (C) The Android Open Source Project

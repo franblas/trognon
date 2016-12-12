@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dntf.dntf.dntf.data.FoodApi;
+import com.dntf.dntf.dntf.fragments.FoodList;
+import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

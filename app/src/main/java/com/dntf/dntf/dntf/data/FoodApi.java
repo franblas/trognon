@@ -1,4 +1,4 @@
-package com.dntf.dntf.dntf;
+package com.dntf.dntf.dntf.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;

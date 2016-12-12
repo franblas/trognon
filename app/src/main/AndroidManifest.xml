@@ -24,8 +24,8 @@
         android:icon="@mipmap/dntf_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <receiver android:name="com.dntf.dntf.dntf.NotificationsCenter"></receiver>
-        <receiver android:name="com.dntf.dntf.dntf.BootCenter">
+        <receiver android:name=".notifications.NotificationsCenter"></receiver>
+        <receiver android:name=".notifications.BootCenter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

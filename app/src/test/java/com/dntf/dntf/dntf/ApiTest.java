@@ -12,8 +12,8 @@ import org.robolectric.RobolectricTestRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.dntf.dntf.dntf.FoodApi.getProductFromCode;
-import static com.dntf.dntf.dntf.FoodApi.getProductName;
+import static com.dntf.dntf.dntf.data.FoodApi.getProductFromCode;
+import static com.dntf.dntf.dntf.data.FoodApi.getProductName;
 
 /**
  * Created by franblas on 04/12/16.
