@@ -14,17 +14,22 @@ pip install -r requirements.txt
 There is a nightly dump of the open food facts database in the MongoDB format. You can
 have more informations here: http://world.openfoodfacts.org/data.
 
-### Create the db
-```
+### Bootstrap the db
+```bash
 mkdir -pv mongodb/data
 chmod 777 mongodb/data
-wget http://world.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz
-mongorestore openfoodfacts-mongodbdump.tar.gz
 ```
 
-### Start the db
-```
+Then start the db
+```bash
 mongod --dbpath mongodb/data
+```
+
+In another terminal
+```bash
+wget http://world.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz
+tar xvzf openfoodfacts-mongodbdump.tar.gz
+mongorestore dump
 ```
 
 ## Run the server
