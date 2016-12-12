@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="30dp"
-    android:background="@color/nephritis"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/onBoardingIcon"
-        android:src="@mipmap/dntf_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/onBoardingTxt"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="18sp"
+    android:id="@+id/onBoardingScroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
+    android:fillViewport="true">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:padding="30dp"
+        android:background="@color/nephritis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/onBoardingBtn"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/onBoarding_btn" />
+        <ImageView
+            android:id="@+id/onBoardingIcon"
+            android:src="@mipmap/dntf_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/onBoardingTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/onBoardingBtn"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onBoarding_btn" />
+    </LinearLayout>
+</ScrollView>
