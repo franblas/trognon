@@ -30,6 +30,7 @@ public class FoodList extends ArrayAdapter<JSONObject> {
     private final ArrayList<JSONObject> products;
     private SharedData sharedData;
     private long now;
+    private int maxProductNameLength = 32;
 
     static public String EXTRA_PRODUCT_KEY = "product";
     static public String EXTRA_EXPIRED_FOOD_STATUS_KEY = "expiredFoodStatus";
@@ -56,7 +57,11 @@ public class FoodList extends ArrayAdapter<JSONObject> {
 
         TextView productNameTxt = (TextView) rowView.findViewById(R.id.productName);
         String productTxt = FoodApi.getProductName(products.get(position));
-        productNameTxt.setText(productTxt.trim().replace("E12", ""));
+        String formattedTxt = productTxt.trim().replace("E12", "");
+        if (formattedTxt.length() > maxProductNameLength) {
+            formattedTxt = formattedTxt.substring(0, maxProductNameLength) + "...";
+        }
+        productNameTxt.setText(formattedTxt);
         productNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
