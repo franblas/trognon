@@ -15,7 +15,6 @@ import com.dntf.dntf.dntf.FoodDetailsActivity;
 import com.dntf.dntf.dntf.R;
 import com.dntf.dntf.dntf.data.FoodApi;
 import com.dntf.dntf.dntf.data.SharedData;
-import com.dntf.dntf.dntf.fragments.NavigationDrawerFragment;
 import com.dntf.dntf.dntf.logic.ExpiredFoodLogic;
 
 import org.json.JSONObject;
@@ -57,7 +56,7 @@ public class FoodList extends ArrayAdapter<JSONObject> {
 
         TextView productNameTxt = (TextView) rowView.findViewById(R.id.productName);
         String productTxt = FoodApi.getProductName(products.get(position));
-        productNameTxt.setText(productTxt.trim().replace("build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res", "").replace("E12", ""));
+        productNameTxt.setText(productTxt.trim().replace("E12", ""));
         productNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
