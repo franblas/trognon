@@ -61,5 +61,8 @@ object.
 Trognon is using the [open food facts api](http://world.openfoodfacts.org/data) in order to fetch informations for products.
 If you want to develop your own backend, there is [an example](backend/) of code.
 
+## Privacy policy
+Checkout the [privacy policy](docs/privacy_policy.md) of Trognon. There is also a [french version](docs/privacy_policy_fr.md).
+
 ## Licensing
 Trognon is licensed under the MIT License. See [LICENSE](LICENSE) for the full license text.
