@@ -4,6 +4,8 @@
 Trognon is a small app to help you to remind the food you bought before it reaches the expiration date.
 Food waste is something we should all avoid in order to reduce consumption and protect the environment.
 
+The app is availabe on the play store <a href="https://play.google.com/store/apps/details?id=trognon.food.scanner.health"><img src=https://play.google.com/intl/en_us/badges/images/badge_new.png></a>
+
 Why Trognon ? Trognon is a french word meaning the core of a fruit, an apple for example. It can also
 be used as an adjective to say "cute".
 
