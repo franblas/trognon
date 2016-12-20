@@ -1,0 +1,76 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font: Helvetica, Verdana, sans-serif;
+}
+
+#banner {
+  width: 100%;
+  height: 30%;
+  background-color: #27ae60;
+  color: white;
+  text-align: center;
+}
+
+#banner-icon img {
+  width: 18%;
+  height: 100%;
+}
+
+#mainpage {
+  width: 100%;
+  height: 70%;
+  text-align: center;
+  font-size: 25;
+  color: white;
+  background-color: #27ae60;
+}
+
+#description {
+  width: 100%;
+  height: 31%;
+}
+
+#playstore {
+  width: 100%;
+  height: 31%;
+}
+
+#privacy-policies {
+  width: 100%;
+  height: 32%;
+  font-size: 20;
+}
+
+#small-footer {
+  width: 100%;
+  height: 1%;
+  font-size: 15;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  -o-transition:color .2s ease-out;
+  -ms-transition:color .2s ease-out;
+  -moz-transition:color .2s ease-out;
+  -webkit-transition:color .2s ease-out;
+  transition:color .2s ease-out;
+}
+
+a:hover {
+  color: #2ecc71;
+}
+
+.privacy-policy-main {
+  width: 100%;
+  background-color: #27ae60;
+  color: white;
+  text-align: center;
+}
+
+.privacy-main-pad {
+  width: 90%;
+  margin-left: 5%;
+}
