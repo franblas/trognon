@@ -30,7 +30,7 @@ public class FoodList extends ArrayAdapter<JSONObject> {
     private final ArrayList<JSONObject> products;
     private SharedData sharedData;
     private long now;
-    private int maxProductNameLength = 32;
+    final static private int maxProductNameLength = 32;
 
     static public String EXTRA_PRODUCT_KEY = "product";
     static public String EXTRA_EXPIRED_FOOD_STATUS_KEY = "expiredFoodStatus";
@@ -70,7 +70,6 @@ public class FoodList extends ArrayAdapter<JSONObject> {
                 intent.putExtra(EXTRA_PRODUCT_KEY, products.get(position).toString());
                 intent.putExtra(EXTRA_EXPIRED_FOOD_STATUS_KEY, expiredFoodStatus);
                 context.startActivity(intent);
-                return;
             }
         });
 

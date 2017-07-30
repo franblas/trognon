@@ -17,7 +17,7 @@ import java.util.Collection;
  * Created by franblas on 26/11/16.
  */
 public class SharedData {
-    final private String appPreferencesReference = "dntfPreferences";
+    final static private String appPreferencesReference = "dntfPreferences";
     final private String productsReference = "products";
     final private String onBoardingReference = "onBoarding";
     final private String cameraFlashModeReference = "cameraFlashMode";
@@ -35,7 +35,7 @@ public class SharedData {
     public void setOnBoardingDone() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(onBoardingReference, true);
-        editor.commit();
+        editor.apply();
     }
 
     public Boolean isOnBoardingDone() {
@@ -49,7 +49,7 @@ public class SharedData {
     public void setCameraFlashModeStatus(Boolean status) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(cameraFlashModeReference, status);
-        editor.commit();
+        editor.apply();
     }
 
     public Boolean getCameraStartModeStatus() {
@@ -59,7 +59,7 @@ public class SharedData {
     public void setCameraStartModeStatus(Boolean status) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(cameraStartModeReference, status);
-        editor.commit();
+        editor.apply();
     }
 
     public ArrayList<JSONObject> getProductsList() {
@@ -76,7 +76,7 @@ public class SharedData {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         ArrayList<JSONObject> itemsList = getProductsList();
         foodApiResult = FoodApi.addNowTime(foodApiResult);
-        if (productName != "") {
+        if (!productName.equals("")) {
             itemsList.add(foodApiResult);
         } else {
             try {
@@ -89,14 +89,14 @@ public class SharedData {
         }
         String json = gson.toJson(itemsList);
         editor.putString(productsReference, json);
-        editor.commit();
+        editor.apply();
     }
 
     public void newProductsList(ArrayList<JSONObject> products) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String json = gson.toJson(products);
         editor.putString(productsReference, json);
-        editor.commit();
+        editor.apply();
     }
 
 }

@@ -3,16 +3,16 @@
 
     <string name="title_section1">Scanner</string>
     <string name="title_section2">Liste</string>
-    <string name="title_section3">A Propos</string>
+    <string name="title_section3">À Propos</string>
 
     <string name="title_section4">Détails</string>
 
     <string name="about_txt">
         <Data>
         <![CDATA[
-        A propos de Trognon ...<br/><br/>
+        À propos de Trognon ...<br/><br/>
         Trognon est une application qui vous aide à vous rappeler de la nourriture que vous avez achetée avant qu\'elle n\'atteigne la date d\'expiration. Il suffit de scanner les codes barres d\'aliments importants et Trognon les ajoutera à votre liste et vous enverra des notifications avant qu\'ils ne périment.<br/><br/>
-        Trogon est <a href=\'https://franblas.github.io/trognon/privacy_policy_fr.html\'>private by design</a>, vos données restent sur votre téléphone et ne sont jamais utilisées par des serveurs ou des analyseurs.<br/><br/>
+        Trogon <a href=\'https://franblas.github.io/trognon/privacy_policy_fr.html\'>respecte votre vie privée</a>, vos données restent sur votre téléphone et ne sont jamais utilisées par des serveurs ou des analyseurs.<br/><br/>
         L\'application utilise la base de données de <a href=\'http://world.openfoodfacts.org/\'>open foods facts</a> pour obtenir des informations sur les produits.<br/><br/>
         ]]>
         </Data>
@@ -29,14 +29,14 @@
 
     <string name="food_list_nothing">Auncun élément dans la liste pour le moment ...</string>
     <string name="scan_nothing">Auncun élément scanné pour le moment ...</string>
-    <string name="sleep_mode_camera">La camera a été mise en veille, réactivez la en cliquant sur l\'icône en haut à droite.</string>
+    <string name="sleep_mode_camera">La caméra a été mise en veille, réactivez la en cliquant sur l\'icône en haut à droite.</string>
     <string name="scan_barcodeinfo">Détecté</string>
 
     <string name="onboarding2">
         <Data>
         <![CDATA[
-        Trognon peut-elle utiliser la camera pour scanné des produits ?<br/><br/>
-        N\'oubliez pas Trogon est <a href=\'https://franblas.github.io/trognon/privacy_policy_fr.html\'>private by design</a>, vos données sont en sécurité sur votre smartphone.
+        Trognon peut-elle utiliser la caméra pour scanner des produits ?<br/><br/>
+        N\'oubliez pas Trogon <a href=\'https://franblas.github.io/trognon/privacy_policy_fr.html\'>respecte votre vie privée</a>, vos données sont en sécurité sur votre smartphone.
         ]]>
         </Data>
     </string>
@@ -48,7 +48,7 @@
         Bienvenue sur Trognon !<br/><br/>
         Trognon est une application qui vous aide à vous rappeler de la nourriture que vous avez achetée avant qu\'elle n\'atteigne la date d\'expiration. Il suffit de scanner les codes barres d\'aliments importants et Trognon les ajoutera à votre liste et vous enverra des notifications avant qu\'ils ne périment.<br/><br/>
         Trogon est <a href=\'https://franblas.github.io/trognon/privacy_policy_fr.html\'>private by design</a>, vos données restent sur votre téléphone et ne sont jamais utilisées par des serveurs ou des analyseurs.<br/><br/>
-        Pour pouvoir scanné des produits, l\'application requiert la permission d\'utiliser la camera, activons la sur l\'écran suivant.
+        Pour pouvoir scanner des produits, l\'application requiert la permission d\'utiliser la caméra, activons la sur l\'écran suivant.
         ]]>
         </Data>
     </string>

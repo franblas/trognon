@@ -124,6 +124,9 @@ public class FoodDetailsActivity extends AppCompatActivity
         for (String k : keyValuePairs) {
             if (k.contains("_unit")) {
                 String[] kv = k.split("=");
+                if (kv.length < 2) {
+                    continue;
+                }
                 units.put(kv[0].trim().replace("_unit", ""), kv[1]);
             }
         }
